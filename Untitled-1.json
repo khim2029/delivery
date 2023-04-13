@@ -1,0 +1,68 @@
+{
+	"code": 200,
+	"message": Success,
+	"data": {
+		"id": "978dbf23f77a6db1123d2b0d37be271e",
+		"tracking_number": "9261290312833844954982",
+		"courier_code": "USPS",
+		"order_number": "1234",
+		"order_id": "1234",
+		"order_date": "2022-08-17T20:10:45+00:00",
+		"created_at": "2022-08-18T19:08:49+00:00",
+		"update_at": "2022-09-21T19:02:21+00:00",
+		"delivery_status": "delivered",
+		"archived": "tracking",
+		"updating": true,
+		"destination_country": "HK",
+		"origin_country": "US",
+		"tracking_postal_code": null,
+		"tracking_ship_date": null,
+		"tracking_destination_country": null,
+		"tracking_courier_account": null,
+		"tracking_key": null,
+		"tracking_origin_country": null,
+		"customer_name": "Joe",
+		"customer_email": "example@mail.com",
+		"customer_sms": "+11234567890",
+		"title": "Product_1234",
+		"logistics_channel": null,
+		"note": "VIP client",
+		"service_code": "USPS Tracking Plus",
+		"weight": null,
+		"substatus": "delivered001",
+		"status_info": null,
+		"previously": null,
+		"destination_track_number": null,
+		"exchange_number": null,
+		"signed_by": null,
+		"scheduled_delivery_date": null,
+		"scheduled_address": null,
+		"latest_event": "Delivered, In/At Mailbox",
+		"latest_checkpoint_time": "2022-09-06T12:46:00",
+		"transit_time": 16,
+		"stay_time": 16,
+		"origin_info": {
+			"courier_code": "usps",
+			"courier_phone": null,
+			"weblink": "https://www.usps.com/",
+			"reference_number": null,
+			"pickup_date": "2022-08-21T04:26:00",
+			"departed_airport_date": null,
+			"arrived_abroad_date": null,
+			"customs_received_date": null,
+			"arrived_destination_date": "2022-09-06T12:46:00",
+			"trackinfo": [
+					{
+						"checkpoint_date": "2022-09-06T12:46:00",
+						"tracking_detail": "Delivered, In/At Mailbox",
+						"location": "ALBUQUERQUE,NM,87105",
+						"checkpoint_delivery_status": "delivered",
+						"checkpoint_delivery_substatus": "delivered001"
+					},
+          ...
+      ]
+		},
+		"destination_info": {
+		}
+	}
+}
