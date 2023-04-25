@@ -8,8 +8,9 @@ generator client {
 }
 
 model User {
-  id    String @id @default(cuid())
-  email String @unique
+  id    String  @id @default(cuid())
+  email String  @unique
+  name  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -35,4 +36,61 @@ model Note {
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId String
+}
+
+model Vessel {
+  id                 String     @id @default(cuid())
+  name               String
+  imo                String
+  departurePort      String
+  arrivalPort        String
+  departureTime      DateTime
+  arrivalTime        DateTime
+  voyageDistance     Int
+  voyageState        String
+  navigationalStatus String
+  location           Location[]
+  Cargo              Cargo?
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+}
+
+model Location {
+  id        String   @id @default(cuid())
+  longitude String
+  Latitude  String
+  name      String
+  vessel    Vessel   @relation(fields: [vesselId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  vesselId  String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Cargo {
+  id                    String   @id @default(cuid())
+  sender                String
+  senderAddress         String
+  consignee             String
+  consigneeAddress      String
+  name                  String
+  description           String
+  quantity              Int
+  note                  String
+  vessel                Vessel   @relation(fields: [vesselId], references: [id])
+  vesselId              String   @unique
+  mmsi                  Int
+  callSign              String
+  flag                  String
+  grossTonnage          Int
+  summerDWT             Int
+  length                Int
+  breadth               Int
+  yearBuilt             Int
+  homePort              String
+  classificationSociety String
+  builder               String
+  owner                 String
+  manager               String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 }
