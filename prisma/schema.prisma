@@ -60,7 +60,7 @@ model Vessel {
 model Location {
   id             String          @id @default(cuid())
   longitude      String
-  Latitude       String
+  latitude       String
   name           String
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
