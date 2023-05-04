@@ -33,11 +33,16 @@ export const createVoyage = async ({
   owner,
   manager,
   userId,
-}: Vessel & Cargo & { userId: User["id"] }) => {
-  return await prisma
+  vesselLocations,
+}: Omit<Vessel, "id" | "userId" | "createdAt" | "updatedAt"> &
+  Omit<Cargo, "id" | "vesselId" | "userId" | "createdAt" | "updatedAt"> & {
+    userId: User["id"];
+  }) => {
+  await prisma
     .$transaction(async (tx) => {
-      const vesselInfo = await tx.vessel.create({
+      const vessel = await tx.vessel.create({
         data: {
+          vesselLocations,
           vesselName,
           imo,
           departurePort,
@@ -54,7 +59,7 @@ export const createVoyage = async ({
           },
         },
       });
-      if (!vesselInfo) {
+      if (!vessel) {
         throw new Error(`Voyage could not be created, try again later`);
       }
       const cargoInfo = await tx.cargo.create({
@@ -69,7 +74,7 @@ export const createVoyage = async ({
           note,
           vessel: {
             connect: {
-              id: vesselInfo.id,
+              id: vessel.id,
             },
           },
           mmsi,
@@ -95,6 +100,7 @@ export const createVoyage = async ({
       if (!cargoInfo) {
         throw new Error(`Voyage could not be created, try again later`);
       }
+      return true;
     })
     .then(async () => {
       await prisma.$disconnect();
