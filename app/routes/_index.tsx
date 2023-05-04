@@ -1,15 +1,12 @@
-import { PrismaClient } from "@prisma/client";
 import type { V2_MetaFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
+import DatePicker from "~/components/DatePicker";
 
 import { useOptionalUser } from "~/utils";
 
 export const meta: V2_MetaFunction = () => [{ title: "Remix Notes" }];
 
-const prisma = new PrismaClient();
-
-export default async function Index() {
-  console.log(await prisma.vessel.count());
+export default function Index() {
   const user = useOptionalUser();
   return (
     <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
@@ -138,6 +135,7 @@ export default async function Index() {
               </a>
             ))}
           </div>
+          <div>{DatePicker()}</div>
         </div>
       </div>
     </main>
