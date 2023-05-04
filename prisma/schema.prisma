@@ -41,7 +41,7 @@ model Note {
 }
 
 model Vessel {
-  id                 String          @id @default(cuid())
+  id                 String   @id @default(cuid())
   vesselName         String
   imo                String
   departurePort      String
@@ -52,32 +52,22 @@ model Vessel {
   voyageState        String
   navigationalStatus String
   Cargo              Cargo?
-  createdAt          DateTime        @default(now())
-  updatedAt          DateTime        @updatedAt
-  VesselLocation     VesselLocation?
-  user               User            @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId             String
+  vesselLocations    String
 }
+
+//Store Vessel locations as comma seperated string
 
 model Location {
-  id             String          @id @default(cuid())
-  longitude      String
-  latitude       String
-  name           String
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  VesselLocation VesselLocation?
-}
-
-model VesselLocation {
-  vessel     Vessel   @relation(fields: [vesselId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  vesselId   String   @unique
-  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  locationId String   @unique
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  @@id([vesselId, locationId])
+  id        String   @id @default(cuid())
+  longitude String
+  latitude  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Cargo {
