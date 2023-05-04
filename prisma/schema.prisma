@@ -17,6 +17,8 @@ model User {
 
   password Password?
   notes    Note[]
+  Vessel   Vessel[]
+  Cargo    Cargo[]
 }
 
 model Password {
@@ -40,12 +42,12 @@ model Note {
 
 model Vessel {
   id                 String          @id @default(cuid())
-  name               String
+  vesselName         String
   imo                String
   departurePort      String
   arrivalPort        String
-  departureTime      DateTime
-  arrivalTime        DateTime
+  departureTime      String
+  arrivalTime        String
   voyageDistance     Int
   voyageState        String
   navigationalStatus String
@@ -53,6 +55,8 @@ model Vessel {
   createdAt          DateTime        @default(now())
   updatedAt          DateTime        @updatedAt
   VesselLocation     VesselLocation?
+  user               User            @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId             String
 }
 
 model Location {
@@ -82,7 +86,7 @@ model Cargo {
   senderAddress         String
   consignee             String
   consigneeAddress      String
-  name                  String
+  cargoName             String
   description           String
   quantity              Int
   note                  String
@@ -103,6 +107,6 @@ model Cargo {
   manager               String
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
-
-  @@map("Cargos")
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId                String
 }
