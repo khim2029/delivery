@@ -1,5 +1,9 @@
-import { CSSProperties } from "react";
-import "../styles/style.css";
+import { useRef, useState } from "react";
+import styles from "~/styles/style.css";
+
+export function links() {
+  return [{ rel: "stylesheet", href: styles }];
+}
 
 type formInput = {
   name: string;
@@ -10,23 +14,6 @@ type formInput = {
   errorMessage?: string;
 };
 
-const inputStyle: CSSProperties = {
-  display: "block",
-  width: "100%",
-  maxWidth: "100%",
-  height: "calc(1.5em + 0.75rem + 2px)",
-  padding: "0.375rem 0.75rem",
-  fontSize: "1rem",
-  fontWeight: 400,
-  lineHeight: 1.5,
-  color: "#495057",
-  backgroundColor: "#fff",
-  backgroundClip: "padding-box",
-  border: "1px solid #ced4da",
-  borderRadius: ".375rem",
-  transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-};
-
 export const FormInput = ({
   name,
   type,
@@ -35,32 +22,30 @@ export const FormInput = ({
   errorMessage,
   label,
 }: formInput) => {
+  const [isInputValid, setIsInputValid] = useState<boolean>(true);
+  const handleBlur = () => {
+    if (errorMessage) {
+      setIsInputValid(false);
+    }
+  };
+  const handleFocus = () => {
+    if (errorMessage) {
+      setIsInputValid(false);
+    }
+  };
+  console.log(isInputValid);
   return (
     <div>
       <label className="mb-2">{label}</label>
       <input
-        style={inputStyle}
         name={name}
         type={type}
         value={value}
         onChange={onChange}
-        onFocus={(e) => {
-          e.target.style.border = "2px solid green";
-        }}
-        onBlur={(e) => {
-          e.target.style.border = "1px solid blue";
-        }}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
       />
-      <span
-        style={{
-          fontSize: "12px",
-          padding: "3px",
-          color: "red",
-          // display: "none",
-        }}
-      >
-        {errorMessage}
-      </span>
+      <span className="errorMessage">{!isInputValid ? errorMessage : ""}</span>
     </div>
   );
 };

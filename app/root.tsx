@@ -19,7 +19,6 @@ export const links: LinksFunction = () => [
     href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",
   },
   { rel: "stylesheet", href: tailwindStylesheetUrl },
-  { rel: "stylesheet", href: "./styles/style.css" },
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 

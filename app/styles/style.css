@@ -9,7 +9,19 @@ input {
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    border: 2px solid #ced4da;
+    border-radius: 0.5rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input:invalid {
+    border: 1px solid red;
+}
+
+input:invalid:blur {
+    border: 2px solid green;
+}
+
+input:invalid~span {
+    display: block;
 }
