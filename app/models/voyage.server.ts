@@ -38,9 +38,9 @@ export const createVoyage = async ({
   Omit<Cargo, "id" | "vesselId" | "userId" | "createdAt" | "updatedAt"> & {
     userId: User["id"];
   }) => {
-  await prisma
+  const vessel = await prisma
     .$transaction(async (tx) => {
-      const vessel = await tx.vessel.create({
+      const vessel: Vessel = await tx.vessel.create({
         data: {
           vesselLocations,
           vesselName,
@@ -62,7 +62,7 @@ export const createVoyage = async ({
       if (!vessel) {
         throw new Error(`Voyage could not be created, try again later`);
       }
-      const cargoInfo = await tx.cargo.create({
+      const cargo: Cargo = await tx.cargo.create({
         data: {
           sender,
           senderAddress,
@@ -97,10 +97,10 @@ export const createVoyage = async ({
           },
         },
       });
-      if (!cargoInfo) {
+      if (!cargo) {
         throw new Error(`Voyage could not be created, try again later`);
       }
-      return true;
+      return { ...vessel, ...cargo };
     })
     .then(async () => {
       await prisma.$disconnect();
@@ -110,4 +110,21 @@ export const createVoyage = async ({
       await prisma.$disconnect();
       process.exit(1);
     });
+};
+
+export const getVoyage = async ({
+  id,
+  userId,
+}: Pick<Vessel, "id"> & { userId: User["id"] }) => {
+  const vessel = await prisma.vessel.findFirst({ where: { id, userId } });
+  if (!vessel) {
+    throw new Response("Vessel not Found", { status: 404 });
+  }
+  const cargo = await prisma.cargo.findFirst({
+    where: { vesselId: vessel.id, userId },
+  });
+  if (!cargo) {
+    throw new Response("Cargo not Found", { status: 404 });
+  }
+  return { ...vessel, ...cargo };
 };

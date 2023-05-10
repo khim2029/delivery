@@ -501,7 +501,7 @@ export default function NewVoyage() {
             </Col>
           ))}
           <Button
-            style={{ backgroundColor: "#157347" }}
+            style={{ backgroundColor: "rgb(22 46 70)" }}
             variant="success"
             type="submit"
           >
