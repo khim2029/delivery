@@ -11,6 +11,7 @@ export const action = async ({ request }: ActionArgs) => {
   const intData: any[] = [];
   const userId = await requireUserId(request);
   const formData = await request.formData();
+  const presentLocation = formData.get("presentLocation")?.toString() ?? "";
   const cargoName = formData.get("cargoName")?.toString() ?? "";
   const imo = formData.get("imo")?.toString() ?? "";
   const departurePort = formData.get("departurePort")?.toString() ?? "";
@@ -55,6 +56,7 @@ export const action = async ({ request }: ActionArgs) => {
     yearBuilt
   );
   stringData.push(
+    presentLocation,
     manager,
     owner,
     builder,
@@ -110,6 +112,7 @@ export const action = async ({ request }: ActionArgs) => {
   }
 
   const voyage = await createVoyage({
+    presentLocation,
     manager,
     userId,
     owner,
@@ -465,6 +468,16 @@ export default function NewVoyage() {
       errorMessage: "Vessel Locations must be a string",
       placeholder: "vesselLocations",
       label: "Vessel Locations",
+      ref: useRef<HTMLInputElement>(null),
+    },
+    {
+      id: 30,
+      name: "presentLocation",
+      type: "text",
+      required: true,
+      errorMessage: "Vessel location must be a string",
+      placeholder: "vessel present location",
+      label: "Vessel present location",
       ref: useRef<HTMLInputElement>(null),
     },
   ];
