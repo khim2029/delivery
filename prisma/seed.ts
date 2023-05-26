@@ -9,11 +9,13 @@ async function seed() {
       name: "Albania",
       latitude: "41",
       longitude: "20",
+      port: "Port of Durres",
     },
     {
       name: "Algeria",
       latitude: "28",
       longitude: "3",
+      port: "Port of Algiers",
     },
     {
       name: "American Samoa",
@@ -29,11 +31,13 @@ async function seed() {
       name: "Angola",
       latitude: "-12.5",
       longitude: "18.5",
+      port: "Port of Luanda",
     },
     {
       name: "Anguilla",
       latitude: "18.25",
       longitude: "-63.1667",
+      port: "",
     },
     {
       name: "Antarctica",
@@ -44,11 +48,13 @@ async function seed() {
       name: "Antigua and Barbuda",
       latitude: "17.05",
       longitude: "-61.8",
+      port: "St. John's Port",
     },
     {
       name: "Argentina",
       latitude: "-34",
       longitude: "-64",
+      port: "Port of Buenos Aires",
     },
     {
       name: "Armenia",
@@ -64,6 +70,7 @@ async function seed() {
       name: "Australia",
       latitude: "-27",
       longitude: "133",
+      port: "Port of Sydney",
     },
     {
       name: "Austria",
@@ -74,26 +81,31 @@ async function seed() {
       name: "Azerbaijan",
       latitude: "40.5",
       longitude: "47.5",
+      port: "Port of Baku",
     },
     {
       name: "Bahamas",
       latitude: "24.25",
       longitude: "-76",
+      port: "Port of Nassau",
     },
     {
       name: "Bahrain",
       latitude: "26",
       longitude: "50.55",
+      port: "Port of Mina Salman",
     },
     {
       name: "Bangladesh",
       latitude: "24",
       longitude: "90",
+      port: "Port of Chittagong",
     },
     {
       name: "Barbados",
       latitude: "13.1667",
       longitude: "-59.5333",
+      port: "Port of Bridgetown",
     },
     {
       name: "Belarus",
@@ -104,16 +116,19 @@ async function seed() {
       name: "Belgium",
       latitude: "50.8333",
       longitude: "4",
+      port: "Port of Antwerp",
     },
     {
       name: "Belize",
       latitude: "17.25",
       longitude: "-88.75",
+      port: "Port of Belize City",
     },
     {
       name: "Benin",
       latitude: "9.5",
       longitude: "2.25",
+      port: "Port of Cotonou",
     },
     {
       name: "Bermuda",
@@ -134,6 +149,7 @@ async function seed() {
       name: "Bosnia and Herzegovina",
       latitude: "44",
       longitude: "18",
+      port: "Port of Ploce",
     },
     {
       name: "Botswana",
@@ -149,6 +165,7 @@ async function seed() {
       name: "Brazil",
       latitude: "-10",
       longitude: "-55",
+      port: "Port of Santos",
     },
     {
       name: "British Indian Ocean Territory",
@@ -159,11 +176,13 @@ async function seed() {
       name: "Brunei Darussalam",
       latitude: "4.5",
       longitude: "114.6667",
+      port: "Port of Muara",
     },
     {
       name: "Bulgaria",
       latitude: "43",
       longitude: "25",
+      port: "Port of Varna",
     },
     {
       name: "Burkina Faso",
@@ -179,21 +198,25 @@ async function seed() {
       name: "Cambodia",
       latitude: "13",
       longitude: "105",
+      port: "Port of Sihanoukville",
     },
     {
       name: "Cameroon",
       latitude: "6",
       longitude: "12",
+      port: "Port of Douala",
     },
     {
       name: "Canada",
       latitude: "60",
       longitude: "-95",
+      port: "Port of Vancouver",
     },
     {
       name: "Cape Verde",
       latitude: "16",
       longitude: "-24",
+      port: "Port of Praia",
     },
     {
       name: "Cayman Islands",
@@ -214,11 +237,13 @@ async function seed() {
       name: "Chile",
       latitude: "-30",
       longitude: "-71",
+      port: "Port of Valparaíso",
     },
     {
       name: "China",
       latitude: "35",
       longitude: "105",
+      port: "Port of Shanghai",
     },
     {
       name: "Christmas Island",
@@ -234,16 +259,19 @@ async function seed() {
       name: "Colombia",
       latitude: "4",
       longitude: "-72",
+      port: "Port of Cartagena",
     },
     {
       name: "Comoros",
       latitude: "-12.1667",
       longitude: "44.25",
+      port: "Port of Moroni",
     },
     {
       name: "Congo",
       latitude: "-1",
       longitude: "15",
+      port: "Port of Pointe-Noire",
     },
     {
       name: "Congo, the Democratic Republic of the",
@@ -259,6 +287,7 @@ async function seed() {
       name: "Costa Rica",
       latitude: "10",
       longitude: "-84",
+      port: "Port of Limón",
     },
     {
       name: "Côte d'Ivoire",
@@ -269,16 +298,19 @@ async function seed() {
       name: "Croatia",
       latitude: "45.1667",
       longitude: "15.5",
+      port: "Port of Rijeka",
     },
     {
       name: "Cuba",
       latitude: "21.5",
       longitude: "-80",
+      port: "Port of Havana",
     },
     {
       name: "Cyprus",
       latitude: "35",
       longitude: "33",
+      port: "Port of Limassol",
     },
     {
       name: "Czech Republic",
@@ -289,56 +321,67 @@ async function seed() {
       name: "Denmark",
       latitude: "56",
       longitude: "10",
+      port: "Port of Copenhagen",
     },
     {
       name: "Djibouti",
       latitude: "11.5",
       longitude: "43",
+      port: "Port of Djibouti",
     },
     {
       name: "Dominica",
       latitude: "15.4167",
       longitude: "-61.3333",
+      port: "Port of Roseau",
     },
     {
       name: "Dominican Republic",
       latitude: "19",
       longitude: "-70.6667",
+      port: "Port of Santo Domingo",
     },
     {
       name: "Ecuador",
       latitude: "-2",
       longitude: "-77.5",
+      port: "Port of Guayaquil",
     },
     {
       name: "Egypt",
       latitude: "27",
       longitude: "30",
+      port: "Port of Alexandria",
     },
     {
       name: "El Salvador",
       latitude: "13.8333",
       longitude: "-88.9167",
+      port: "Port of Acajutla",
     },
     {
       name: "Equatorial Guinea",
       latitude: "2",
       longitude: "10",
+      port: "Port of Malabo",
     },
     {
       name: "Eritrea",
       latitude: "15",
       longitude: "39",
+      port: "Port of Massawa",
     },
     {
       name: "Estonia",
       latitude: "59",
       longitude: "26",
+      port: "Port of Tallinn",
     },
     {
       name: "Ethiopia",
       latitude: "8",
       longitude: "38",
+      port: "Port of Djibouti",
     },
     {
       name: "Falkland Islands (Malvinas)",
@@ -354,16 +397,19 @@ async function seed() {
       name: "Fiji",
       latitude: "-18",
       longitude: "175",
+      port: "Port of Suva",
     },
     {
       name: "Finland",
       latitude: "64",
       longitude: "26",
+      port: "Port of Helsinki",
     },
     {
       name: "France",
       latitude: "46",
       longitude: "2",
+      port: "Port of Marseille",
     },
     {
       name: "French Guiana",
@@ -384,26 +430,31 @@ async function seed() {
       name: "Gabon",
       latitude: "-1",
       longitude: "11.75",
+      port: "Port of Libreville",
     },
     {
       name: "Gambia",
       latitude: "13.4667",
       longitude: "-16.5667",
+      port: "Port of Banjul",
     },
     {
       name: "Georgia",
       latitude: "42",
       longitude: "43.5",
+      port: "Port of Poti",
     },
     {
       name: "Germany",
       latitude: "51",
       longitude: "9",
+      port: "Port of Hamburg",
     },
     {
       name: "Ghana",
       latitude: "8",
       longitude: "-2",
+      port: "Port of Tema",
     },
     {
       name: "Gibraltar",
@@ -414,6 +465,7 @@ async function seed() {
       name: "Greece",
       latitude: "39",
       longitude: "22",
+      port: "Port of Piraeus",
     },
     {
       name: "Greenland",
@@ -424,6 +476,7 @@ async function seed() {
       name: "Grenada",
       latitude: "12.1167",
       longitude: "-61.6667",
+      port: "Port of St. George's",
     },
     {
       name: "Guadeloupe",
@@ -439,6 +492,7 @@ async function seed() {
       name: "Guatemala",
       latitude: "15.5",
       longitude: "-90.25",
+      port: "Port of Santo Tomás de Castilla",
     },
     {
       name: "Guernsey",
@@ -449,21 +503,25 @@ async function seed() {
       name: "Guinea",
       latitude: "11",
       longitude: "-10",
+      port: "Port of Conakry",
     },
     {
       name: "Guinea-Bissau",
       latitude: "12",
       longitude: "-15",
+      port: "Port of Bissau",
     },
     {
       name: "Guyana",
       latitude: "5",
       longitude: "-59",
+      port: "Port of Georgetown",
     },
     {
       name: "Haiti",
       latitude: "19",
       longitude: "-72.4167",
+      port: "Port of Port-au-Prince",
     },
     {
       name: "Heard Island and McDonald Islands",
@@ -479,6 +537,7 @@ async function seed() {
       name: "Honduras",
       latitude: "15",
       longitude: "-86.5",
+      port: "Port of Puerto Cortes",
     },
     {
       name: "Hong Kong",
@@ -489,36 +548,43 @@ async function seed() {
       name: "Hungary",
       latitude: "47",
       longitude: "20",
+      port: "Port of Budapest",
     },
     {
       name: "Iceland",
       latitude: "65",
       longitude: "-18",
+      port: "Port of Reykjavik",
     },
     {
       name: "India",
       latitude: "20",
       longitude: "77",
+      port: "Port of Mumbai",
     },
     {
       name: "Indonesia",
       latitude: "-5",
       longitude: "120",
+      port: "Port of Jakarta",
     },
     {
       name: "Iran, Islamic Republic of",
       latitude: "32",
       longitude: "53",
+      port: "Port of Bandar Abbas",
     },
     {
       name: "Iraq",
       latitude: "33",
       longitude: "44",
+      port: "Port of Umm Qasr",
     },
     {
       name: "Ireland",
       latitude: "53",
       longitude: "-8",
+      port: "Port of Dublin",
     },
     {
       name: "Isle of Man",
@@ -529,21 +595,25 @@ async function seed() {
       name: "Israel",
       latitude: "31.5",
       longitude: "34.75",
+      port: "Port of Haifa",
     },
     {
       name: "Italy",
       latitude: "42.8333",
       longitude: "12.8333",
+      port: "Port of Genoa",
     },
     {
       name: "Jamaica",
       latitude: "18.25",
       longitude: "-77.5",
+      port: "Port of Kingston",
     },
     {
       name: "Japan",
       latitude: "36",
       longitude: "138",
+      port: "Port of Yokohama",
     },
     {
       name: "Jersey",
@@ -554,6 +624,7 @@ async function seed() {
       name: "Jordan",
       latitude: "31",
       longitude: "36",
+      port: "Port of Aqaba",
     },
     {
       name: "Kazakhstan",
@@ -564,26 +635,31 @@ async function seed() {
       name: "Kenya",
       latitude: "1",
       longitude: "38",
+      port: "Port of Mombasa",
     },
     {
       name: "Kiribati",
       latitude: "1.4167",
       longitude: "173",
+      port: "Port of Betio",
     },
     {
       name: "Korea, Democratic People's Republic of",
       latitude: "40",
       longitude: "127",
+      port: "Port of Nampo",
     },
     {
       name: "Korea, Republic of",
       latitude: "37",
       longitude: "127.5",
+      port: "Port of Busan",
     },
     {
       name: "Kuwait",
       latitude: "29.3375",
       longitude: "47.6581",
+      port: "Port of Shuwaikh",
     },
     {
       name: "Kyrgyzstan",
@@ -599,26 +675,31 @@ async function seed() {
       name: "Latvia",
       latitude: "57",
       longitude: "25",
+      port: "Port of Riga",
     },
     {
       name: "Lebanon",
       latitude: "33.8333",
       longitude: "35.8333",
+      port: "Port of Beirut",
     },
     {
       name: "Lesotho",
       latitude: "-29.5",
       longitude: "28.5",
+      port: "Port of Durban",
     },
     {
       name: "Liberia",
       latitude: "6.5",
       longitude: "-9.5",
+      port: "Port of Monrovia",
     },
     {
       name: "Libyan Arab Jamahiriya",
       latitude: "25",
       longitude: "17",
+      port: "Port of Tripoli",
     },
     {
       name: "Liechtenstein",
@@ -629,6 +710,7 @@ async function seed() {
       name: "Lithuania",
       latitude: "56",
       longitude: "24",
+      port: "Port of Klaipeda",
     },
     {
       name: "Luxembourg",
@@ -649,21 +731,25 @@ async function seed() {
       name: "Madagascar",
       latitude: "-20",
       longitude: "47",
+      port: "Port of Toamasina",
     },
     {
       name: "Malawi",
       latitude: "-13.5",
       longitude: "34",
+      port: "Port of Monkey Bay",
     },
     {
       name: "Malaysia",
       latitude: "2.5",
       longitude: "112.5",
+      port: "Port of Port Klang",
     },
     {
       name: "Maldives",
       latitude: "3.25",
       longitude: "73",
+      port: "Port of Male",
     },
     {
       name: "Mali",
@@ -674,11 +760,13 @@ async function seed() {
       name: "Malta",
       latitude: "35.8333",
       longitude: "14.5833",
+      port: "Port of Valletta",
     },
     {
       name: "Marshall Islands",
       latitude: "9",
       longitude: "168",
+      port: "Port of Majuro",
     },
     {
       name: "Martinique",
@@ -689,11 +777,13 @@ async function seed() {
       name: "Mauritania",
       latitude: "20",
       longitude: "-12",
+      port: "Port of Nouakchott",
     },
     {
       name: "Mauritius",
       latitude: "-20.2833",
       longitude: "57.55",
+      port: "Port Louis Harbor",
     },
     {
       name: "Mayotte",
@@ -704,11 +794,13 @@ async function seed() {
       name: "Mexico",
       latitude: "23",
       longitude: "-102",
+      port: "Port of Manzanillo",
     },
     {
       name: "Micronesia, Federated States of",
       latitude: "6.9167",
       longitude: "158.25",
+      port: "Port of Kolonia",
     },
     {
       name: "Moldova, Republic of",
@@ -719,6 +811,7 @@ async function seed() {
       name: "Monaco",
       latitude: "43.7333",
       longitude: "7.4",
+      port: "Port of Monaco",
     },
     {
       name: "Mongolia",
@@ -729,6 +822,7 @@ async function seed() {
       name: "Montenegro",
       latitude: "42",
       longitude: "19",
+      port: "Port of Bar",
     },
     {
       name: "Montserrat",
@@ -739,21 +833,25 @@ async function seed() {
       name: "Morocco",
       latitude: "32",
       longitude: "-5",
+      port: "Port of Casablanca",
     },
     {
       name: "Mozambique",
       latitude: "-18.25",
       longitude: "35",
+      port: "Port of Maputo",
     },
     {
       name: "Myanmar",
       latitude: "22",
       longitude: "98",
+      port: "Port of Yangon",
     },
     {
       name: "Namibia",
       latitude: "-22",
       longitude: "17",
+      port: "Port of Walvis Bay",
     },
     {
       name: "Nauru",
@@ -769,6 +867,7 @@ async function seed() {
       name: "Netherlands",
       latitude: "52.5",
       longitude: "5.75",
+      port: "Port of Rotterdam",
     },
     {
       name: "Netherlands Antilles",
@@ -784,11 +883,13 @@ async function seed() {
       name: "New Zealand",
       latitude: "-41",
       longitude: "174",
+      port: "Port of Auckland",
     },
     {
       name: "Nicaragua",
       latitude: "13",
       longitude: "-85",
+      port: "Port of Corinto",
     },
     {
       name: "Niger",
@@ -799,6 +900,7 @@ async function seed() {
       name: "Nigeria",
       latitude: "10",
       longitude: "8",
+      port: "Port of Lagos",
     },
     {
       name: "Niue",
@@ -819,21 +921,25 @@ async function seed() {
       name: "Norway",
       latitude: "62",
       longitude: "10",
+      port: "Port of Oslo",
     },
     {
       name: "Oman",
       latitude: "21",
       longitude: "57",
+      port: "Port of Sohar",
     },
     {
       name: "Pakistan",
       latitude: "30",
       longitude: "70",
+      port: "Port of Karachi",
     },
     {
       name: "Palau",
       latitude: "7.5",
       longitude: "134.5",
+      port: "Port of Malakal",
     },
     {
       name: "Palestinian Territory, Occupied",
@@ -844,26 +950,31 @@ async function seed() {
       name: "Panama",
       latitude: "9",
       longitude: "-80",
+      port: "Port of Balboa",
     },
     {
       name: "Papua New Guinea",
       latitude: "-6",
       longitude: "147",
+      port: "Port Moresby Port",
     },
     {
       name: "Paraguay",
       latitude: "-23",
       longitude: "-58",
+      port: "Port of Asuncion",
     },
     {
       name: "Peru",
       latitude: "-10",
       longitude: "-76",
+      port: "Port of Callao",
     },
     {
       name: "Philippines",
       latitude: "13",
       longitude: "122",
+      port: "Port of Manila",
     },
     {
       name: "Pitcairn",
@@ -874,11 +985,13 @@ async function seed() {
       name: "Poland",
       latitude: "52",
       longitude: "20",
+      port: "Port of Gdansk",
     },
     {
       name: "Portugal",
       latitude: "39.5",
       longitude: "-8",
+      port: "Port of Lisbon",
     },
     {
       name: "Puerto Rico",
@@ -889,6 +1002,7 @@ async function seed() {
       name: "Qatar",
       latitude: "25.5",
       longitude: "51.25",
+      port: "Port of Doha",
     },
     {
       name: "Réunion",
@@ -899,11 +1013,13 @@ async function seed() {
       name: "Romania",
       latitude: "46",
       longitude: "25",
+      port: "Port of Constanta",
     },
     {
       name: "Russian Federation",
       latitude: "60",
       longitude: "100",
+      port: "Port of Saint Petersburg",
     },
     {
       name: "Rwanda",
@@ -919,11 +1035,13 @@ async function seed() {
       name: "Saint Kitts and Nevis",
       latitude: "17.3333",
       longitude: "-62.75",
+      port: "Port of Basseterre",
     },
     {
       name: "Saint Lucia",
       latitude: "13.8833",
       longitude: "-61.1333",
+      port: "Port of Castries",
     },
     {
       name: "Saint Pierre and Miquelon",
@@ -934,11 +1052,13 @@ async function seed() {
       name: "Saint Vincent and the Grenadines",
       latitude: "13.25",
       longitude: "-61.2",
+      port: "Port Kingstown",
     },
     {
       name: "Samoa",
       latitude: "-13.5833",
       longitude: "-172.3333",
+      port: "Port of Apia",
     },
     {
       name: "San Marino",
@@ -949,61 +1069,73 @@ async function seed() {
       name: "Sao Tome and Principe",
       latitude: "1",
       longitude: "7",
+      port: "Port of Sao Tome",
     },
     {
       name: "Saudi Arabia",
       latitude: "25",
       longitude: "45",
+      port: "Port of Jeddah",
     },
     {
       name: "Senegal",
       latitude: "14",
       longitude: "-14",
+      port: "Port of Dakar",
     },
     {
       name: "Serbia",
       latitude: "44",
       longitude: "21",
+      port: "Port of Belgrade",
     },
     {
       name: "Seychelles",
       latitude: "-4.5833",
       longitude: "55.6667",
+      port: "Port of Victoria",
     },
     {
       name: "Sierra Leone",
       latitude: "8.5",
       longitude: "-11.5",
+      port: "Port of Freetown",
     },
     {
       name: "Singapore",
       latitude: "1.3667",
       longitude: "103.8",
+      port: "Port of Singapore",
     },
     {
       name: "Slovakia",
       latitude: "48.6667",
       longitude: "19.5",
+      port: "Port of Bratislava",
     },
     {
       name: "Slovenia",
       latitude: "46",
       longitude: "15",
+      port: "Port of Koper",
     },
     {
       name: "Solomon Islands",
       latitude: "-8",
       longitude: "159",
+      port: "Port of Honiara",
     },
     {
       name: "Somalia",
       latitude: "10",
       longitude: "49",
+      port: "Port of Mogadishu",
     },
     {
       name: "South Africa",
       latitude: "-29",
       longitude: "24",
+      port: "Port of Durban",
     },
     {
       name: "South Georgia and the South Sandwich Islands",
@@ -1014,21 +1146,25 @@ async function seed() {
       name: "Spain",
       latitude: "40",
       longitude: "-4",
+      port: "Port of Barcelona",
     },
     {
       name: "Sri Lanka",
       latitude: "7",
       longitude: "81",
+      port: "Port of Colombo",
     },
     {
       name: "Sudan",
       latitude: "15",
       longitude: "30",
+      port: "Port Sudan",
     },
     {
       name: "Suriname",
       latitude: "4",
       longitude: "-56",
+      port: "Port of Paramaribo",
     },
     {
       name: "Svalbard and Jan Mayen",
@@ -1044,6 +1180,7 @@ async function seed() {
       name: "Sweden",
       latitude: "62",
       longitude: "15",
+      port: "Port of Gothenburg",
     },
     {
       name: "Switzerland",
@@ -1054,11 +1191,13 @@ async function seed() {
       name: "Syrian Arab Republic",
       latitude: "35",
       longitude: "38",
+      port: "Port of Latakia",
     },
     {
       name: "Taiwan, Province of China",
       latitude: "23.5",
       longitude: "121",
+      port: "Port of Kaohsiung",
     },
     {
       name: "Tajikistan",
@@ -1069,11 +1208,13 @@ async function seed() {
       name: "Tanzania, United Republic of",
       latitude: "-6",
       longitude: "35",
+      port: "Port of Dar es Salaam",
     },
     {
       name: "Thailand",
       latitude: "15",
       longitude: "100",
+      port: "Port of Bangkok",
     },
     {
       name: "Timor-Leste",
@@ -1084,6 +1225,7 @@ async function seed() {
       name: "Togo",
       latitude: "8",
       longitude: "1.1667",
+      port: " Port of Lome",
     },
     {
       name: "Tokelau",
@@ -1094,21 +1236,25 @@ async function seed() {
       name: "Tonga",
       latitude: "-20",
       longitude: "-175",
+      port: "Port of Nuku'alofa",
     },
     {
       name: "Trinidad and Tobago",
       latitude: "11",
       longitude: "-61",
+      port: "Port of Port of Spain",
     },
     {
       name: "Tunisia",
       latitude: "34",
       longitude: "9",
+      port: "Port of Tunis",
     },
     {
       name: "Turkey",
       latitude: "39",
       longitude: "35",
+      port: "Port of Istanbul",
     },
     {
       name: "Turkmenistan",
@@ -1129,26 +1275,31 @@ async function seed() {
       name: "Uganda",
       latitude: "1",
       longitude: "32",
+      port: "Port Bell",
     },
     {
       name: "Ukraine",
       latitude: "49",
       longitude: "32",
+      port: "Port of Odessa",
     },
     {
       name: "United Arab Emirates",
       latitude: "24",
       longitude: "54",
+      port: "Port of Jebel Ali",
     },
     {
       name: "United Kingdom",
       latitude: "54",
       longitude: "-2",
+      port: "Port of London",
     },
     {
       name: "United States",
       latitude: "38",
       longitude: "-97",
+      port: "Port of Los Angeles",
     },
     {
       name: "United States Minor Outlying Islands",
@@ -1159,6 +1310,7 @@ async function seed() {
       name: "Uruguay",
       latitude: "-33",
       longitude: "-56",
+      port: "Port of Montevideo",
     },
     {
       name: "Uzbekistan",
@@ -1169,16 +1321,19 @@ async function seed() {
       name: "Vanuatu",
       latitude: "-16",
       longitude: "167",
+      port: "Port of Port Vila",
     },
     {
       name: "Venezuela, Bolivarian Republic of",
       latitude: "8",
       longitude: "-66",
+      port: "Port of Puerto Cabello",
     },
     {
       name: "Viet Nam",
       latitude: "16",
       longitude: "106",
+      port: "Port of Ho Chi Minh City",
     },
     {
       name: "Virgin Islands, British",
@@ -1204,16 +1359,19 @@ async function seed() {
       name: "Yemen",
       latitude: "15",
       longitude: "48",
+      port: "Port of Aden",
     },
     {
       name: "Zambia",
       latitude: "-15",
       longitude: "30",
+      port: "Port of Durban",
     },
     {
       name: "Zimbabwe",
       latitude: "-20",
       longitude: "30",
+      port: "Port of Beira",
     },
     {
       name: "Afghanistan",

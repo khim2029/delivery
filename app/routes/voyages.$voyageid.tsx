@@ -18,6 +18,7 @@ export const action = async ({ request, params }: ActionArgs) => {
     throw new Response("Not Found", { status: 404 });
   }
   const formData = await request.formData();
+  const presentLocation = formData.get("presentLocation")?.toString() ?? "";
   const cargoName = formData.get("cargoName")?.toString() ?? "";
   const imo = formData.get("imo")?.toString() ?? "";
   const departurePort = formData.get("departurePort")?.toString() ?? "";
@@ -53,6 +54,7 @@ export const action = async ({ request, params }: ActionArgs) => {
   const vesselLocations = formData.get("vesselLocations")?.toString() ?? "";
   await updateVoyage(
     {
+      presentLocation,
       manager,
       userId,
       owner,

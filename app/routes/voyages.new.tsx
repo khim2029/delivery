@@ -1,14 +1,24 @@
 import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Form, isRouteErrorResponse, useRouteError } from "@remix-run/react";
-import { useRef } from "react";
+import {
+  Form,
+  isRouteErrorResponse,
+  useActionData,
+  useRouteError,
+} from "@remix-run/react";
+import {
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+  useRef,
+} from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { createVoyage } from "~/models/voyage.server";
 import { requireUserId } from "~/session.server";
 
 export const action = async ({ request }: ActionArgs) => {
-  const stringData: any[] = [];
-  const intData: any[] = [];
   const userId = await requireUserId(request);
   const formData = await request.formData();
   const presentLocation = formData.get("presentLocation")?.toString() ?? "";
@@ -45,71 +55,6 @@ export const action = async ({ request }: ActionArgs) => {
   const breadth = formData.get("breadth")?.toString() ?? "";
   const yearBuilt = formData.get("yearBuilt")?.toString() ?? "";
   const vesselLocations = formData.get("vesselLocations")?.toString() ?? "";
-  intData.push(
-    voyageDistance,
-    mmsi,
-    quantity,
-    grossTonnage,
-    summerDWT,
-    length,
-    breadth,
-    yearBuilt
-  );
-  stringData.push(
-    presentLocation,
-    manager,
-    owner,
-    builder,
-    classificationSociety,
-    homePort,
-    flag,
-    callSign,
-    note,
-    description,
-    consigneeAddress,
-    consignee,
-    senderAddress,
-    sender,
-    vesselName,
-    cargoName,
-    imo,
-    departurePort,
-    arrivalPort,
-    voyageState,
-    navigationalStatus,
-    departureTime,
-    arrivalTime,
-    vesselLocations
-  );
-  for (const data of stringData) {
-    if (typeof data === "string" && data.length === 0) {
-      return json(
-        { errors: { body: null, res: `${data} is required` } },
-        { status: 400 }
-      );
-    }
-    if (data.toString().length > 256) {
-      return json(
-        { errors: { body: null, res: `${data} is too long` } },
-        { status: 400 }
-      );
-    }
-  }
-  for (const data of intData) {
-    if (typeof data === "number" && data.toString().length === 0) {
-      return json(
-        { errors: { body: null, res: `${data} is required` } },
-        { status: 400 }
-      );
-    }
-
-    if (data.toString().length > 254) {
-      return json(
-        { errors: { body: null, res: `${data} is too long` } },
-        { status: 400 }
-      );
-    }
-  }
 
   const voyage = await createVoyage({
     presentLocation,
@@ -482,6 +427,8 @@ export default function NewVoyage() {
     },
   ];
 
+  const actionData = useActionData();
+
   return (
     <Container>
       <Form
@@ -493,14 +440,23 @@ export default function NewVoyage() {
           width: "100%",
         }}
       >
+        {actionData?.errors && (
+          <div className="bg-red-600 p-2 text-[13px] text-white">
+            {actionData.errors?.items?.map(
+              (error: any, index: Key | null | undefined) => (
+                <p key={index}>{error.message}</p>
+              )
+            )}
+          </div>
+        )}
         <Row>
           <div className="mb-4">
             <p className="mb-3 mt-4" style={{ color: "blue" }}>
               {"Voyage information".toUpperCase()}
             </p>
           </div>
-          {formInputs.map((input) => (
-            <Col key={input.id} className=" mb-3 mt-3" sm={6} xs={12}>
+          {formInputs.map((input, i) => (
+            <Col key={i} className=" mb-3 mt-3" sm={6} xs={12}>
               <label className="flex w-full flex-col gap-1">
                 <span>{input.label}: </span>
                 <input
