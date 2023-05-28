@@ -110,7 +110,7 @@ export const createVoyage = async ({
     .catch(async (e) => {
       console.log(e);
       await prisma.$disconnect();
-      process.exit(1);
+      throw new Error(`Voyage could not be created, try again later`);
     });
 };
 

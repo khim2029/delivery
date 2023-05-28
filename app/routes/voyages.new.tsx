@@ -1,22 +1,16 @@
 import type { ActionArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
 import {
   Form,
   isRouteErrorResponse,
   useActionData,
   useRouteError,
 } from "@remix-run/react";
-import {
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  useRef,
-} from "react";
+import { Key, useEffect, useRef } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { getLocationsCordinates } from "~/models/location.server";
 import { createVoyage } from "~/models/voyage.server";
 import { requireUserId } from "~/session.server";
+import { calculateVoyageDistance, safeRedirect } from "~/utils";
 
 export const action = async ({ request }: ActionArgs) => {
   const userId = await requireUserId(request);
@@ -31,7 +25,6 @@ export const action = async ({ request }: ActionArgs) => {
     formData.get("navigationalStatus")?.toString() ?? "";
   const departureTime = formData.get("departureTime")?.toString() ?? "";
   const arrivalTime = formData.get("arrivalTime")?.toString() ?? "";
-  const voyageDistance = formData.get("voyageDistance")?.toString() ?? "";
   const sender = formData.get("sender")?.toString() ?? "";
   const senderAddress = formData.get("senderAddress")?.toString() ?? "";
   const consignee = formData.get("consignee")?.toString() ?? "";
@@ -55,6 +48,27 @@ export const action = async ({ request }: ActionArgs) => {
   const breadth = formData.get("breadth")?.toString() ?? "";
   const yearBuilt = formData.get("yearBuilt")?.toString() ?? "";
   const vesselLocations = formData.get("vesselLocations")?.toString() ?? "";
+
+  const vesselLocationsArr = vesselLocations.split(",");
+  const vesselLocationCorditates = await getLocationsCordinates(
+    vesselLocationsArr
+  );
+  let voyageDistance;
+  let vesselVoyageDistance;
+  if (
+    vesselLocationCorditates &&
+    typeof vesselLocationCorditates !== "number"
+  ) {
+    vesselVoyageDistance = calculateVoyageDistance(
+      vesselLocationCorditates[0].latitude,
+      vesselLocationCorditates[0].longitude,
+      vesselLocationCorditates[1].latitude,
+      vesselLocationCorditates[1].longitude
+    );
+  }
+  if (vesselVoyageDistance) {
+    voyageDistance = vesselVoyageDistance;
+  }
 
   const voyage = await createVoyage({
     presentLocation,
@@ -82,9 +96,7 @@ export const action = async ({ request }: ActionArgs) => {
     departureTime,
     arrivalTime,
     vesselLocations,
-    voyageDistance: !Number.isNaN(parseInt(voyageDistance, 10))
-      ? parseInt(voyageDistance, 10)
-      : 0,
+    voyageDistance: voyageDistance ? voyageDistance : 0,
     mmsi: !Number.isNaN(parseInt(mmsi, 10)) ? parseInt(mmsi, 10) : 0,
     quantity: !Number.isNaN(parseInt(quantity, 10))
       ? parseInt(quantity, 10)
@@ -101,6 +113,8 @@ export const action = async ({ request }: ActionArgs) => {
       ? parseInt(yearBuilt, 10)
       : 0,
   });
+
+  return safeRedirect(formData.get("redirectTo"), "/vessels");
 };
 
 export default function NewVoyage() {
@@ -163,16 +177,6 @@ export default function NewVoyage() {
       errorMessage: "Arrival Time must be a string",
       placeholder: "arrivalTime",
       label: "Arrival Time",
-      ref: useRef<HTMLInputElement>(null),
-    },
-    {
-      id: 6,
-      name: "voyageDistance",
-      type: "number",
-      required: true,
-      errorMessage: "Voyage Distance must be a number",
-      placeholder: "Voyage Distance voyageDistance",
-      label: "Voyage Distance",
       ref: useRef<HTMLInputElement>(null),
     },
     {
@@ -428,6 +432,13 @@ export default function NewVoyage() {
   ];
 
   const actionData = useActionData();
+  useEffect(() => {
+    if (actionData?.errors) {
+      formInputs.forEach((input) => {
+        input.ref.current?.focus();
+      });
+    }
+  }, [actionData]);
 
   return (
     <Container>
@@ -456,15 +467,24 @@ export default function NewVoyage() {
             </p>
           </div>
           {formInputs.map((input, i) => (
-            <Col key={i} className=" mb-3 mt-3" sm={6} xs={12}>
+            <Col
+              style={{
+                display: input.name === "voyageDistance" ? "none" : "block",
+              }}
+              key={i}
+              className=" mb-3 mt-3"
+              sm={6}
+              xs={12}
+            >
               <label className="flex w-full flex-col gap-1">
                 <span>{input.label}: </span>
                 <input
                   ref={input.ref}
                   name={input.name}
-                  className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
                   type={input.type}
                   required={input.required}
+                  aria-invalid={actionData?.errors?.input ? true : undefined}
+                  className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
                 />
               </label>
             </Col>

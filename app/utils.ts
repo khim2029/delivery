@@ -69,3 +69,29 @@ export function useUser(): User {
 export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@");
 }
+
+export function calculateVoyageDistance(
+  lat1: string,
+  lon1: string,
+  lat2: string,
+  lon2: string
+) {
+  const R = 6371;
+
+  const lat1Rad = (Math.PI / 180) * Number(lat1);
+  const lon1Rad = (Math.PI / 180) * Number(lon1);
+  const lat2Rad = (Math.PI / 180) * Number(lat2);
+  const lon2Rad = (Math.PI / 180) * Number(lon2);
+
+  const dLat = lat2Rad - lat1Rad;
+  const dLon = lon2Rad - lon1Rad;
+
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1Rad) * Math.cos(lat2Rad) * Math.sin(dLon / 2) ** 2;
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c;
+
+  return Math.round(distance);
+}

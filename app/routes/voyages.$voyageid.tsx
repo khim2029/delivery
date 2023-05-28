@@ -7,8 +7,10 @@ import {
 } from "@remix-run/react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import invariant from "tiny-invariant";
+import { getLocationsCordinates } from "~/models/location.server";
 import { getVoyage, updateVoyage } from "~/models/voyage.server";
 import { requireUserId } from "~/session.server";
+import { calculateVoyageDistance, safeRedirect } from "~/utils";
 
 export const action = async ({ request, params }: ActionArgs) => {
   const userId = await requireUserId(request);
@@ -28,7 +30,6 @@ export const action = async ({ request, params }: ActionArgs) => {
     formData.get("navigationalStatus")?.toString() ?? "";
   const departureTime = formData.get("departureTime")?.toString() ?? "";
   const arrivalTime = formData.get("arrivalTime")?.toString() ?? "";
-  const voyageDistance = formData.get("voyageDistance")?.toString() ?? "";
   const sender = formData.get("sender")?.toString() ?? "";
   const senderAddress = formData.get("senderAddress")?.toString() ?? "";
   const consignee = formData.get("consignee")?.toString() ?? "";
@@ -52,6 +53,37 @@ export const action = async ({ request, params }: ActionArgs) => {
   const breadth = formData.get("breadth")?.toString() ?? "";
   const yearBuilt = formData.get("yearBuilt")?.toString() ?? "";
   const vesselLocations = formData.get("vesselLocations")?.toString() ?? "";
+
+  let vesselLocationCorditates;
+  let vesselVoyageDistance;
+  if (presentLocation) {
+    const locations: string[] = [];
+    const vesselLocationsArr = vesselLocations.split(",");
+    const finalLocation = vesselLocationsArr[vesselLocationsArr.length - 1];
+    locations.push(
+      presentLocation.replace(/\s/g, ""),
+      finalLocation.replace(/\s/g, "")
+    );
+    vesselLocationCorditates = await getLocationsCordinates(locations);
+    if (
+      vesselLocationCorditates &&
+      typeof vesselLocationCorditates !== "number"
+    ) {
+      vesselVoyageDistance = calculateVoyageDistance(
+        vesselLocationCorditates[0].latitude,
+        vesselLocationCorditates[0].longitude,
+        vesselLocationCorditates[1].latitude,
+        vesselLocationCorditates[1].longitude
+      );
+    } else {
+      vesselVoyageDistance = 0;
+    }
+  }
+
+  let voyageDistance;
+
+  voyageDistance = vesselVoyageDistance;
+
   await updateVoyage(
     {
       presentLocation,
@@ -79,9 +111,7 @@ export const action = async ({ request, params }: ActionArgs) => {
       departureTime,
       arrivalTime,
       vesselLocations,
-      voyageDistance: !Number.isNaN(parseInt(voyageDistance, 10))
-        ? parseInt(voyageDistance, 10)
-        : 0,
+      voyageDistance: voyageDistance ? voyageDistance : 0,
       mmsi: !Number.isNaN(parseInt(mmsi, 10)) ? parseInt(mmsi, 10) : 0,
       quantity: !Number.isNaN(parseInt(quantity, 10))
         ? parseInt(quantity, 10)
@@ -101,7 +131,7 @@ export const action = async ({ request, params }: ActionArgs) => {
     params.voyageId,
     voyage.id
   );
-  return null;
+  return safeRedirect("/voyages");
 };
 export const loader = async ({ params, request }: LoaderArgs) => {
   const userId = await requireUserId(request);
@@ -156,6 +186,7 @@ export default function VoyageDetailsPage() {
                   name={key}
                   className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
                   defaultValue={value}
+                  disabled={key === "voyageDistance" ? true : false}
                 />
               </label>
             </Col>
