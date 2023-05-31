@@ -17,9 +17,15 @@ export default function voyages() {
     <div className="flex h-full min-h-screen flex-col">
       <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
         <h1 className="text-3xl font-bold">
-          <Link to=".">Notes</Link>
+          <Link to=".">Voyages</Link>
         </h1>
         <p>{user.email}</p>
+        <button className="rounded bg-slate-600 px-4 py-2 text-blue-100 hover:bg-blue-500 active:bg-blue-600">
+          <p>
+            <Link to="./locations">Locations</Link>
+          </p>
+        </button>
+
         <Form action="/logout" method="post">
           <button
             type="submit"

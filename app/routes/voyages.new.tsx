@@ -461,11 +461,6 @@ export default function NewVoyage() {
           </div>
         )}
         <Row>
-          <div className="mb-4">
-            <p className="mb-3 mt-4" style={{ color: "blue" }}>
-              {"Voyage information".toUpperCase()}
-            </p>
-          </div>
           {formInputs.map((input, i) => (
             <Col
               style={{
@@ -494,7 +489,7 @@ export default function NewVoyage() {
             variant="success"
             type="submit"
           >
-            Submit
+            Create Voyage
           </Button>
         </Row>
       </Form>

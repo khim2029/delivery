@@ -625,6 +625,11 @@ video {
   margin-top: 1rem;
 }
 
+.ms-auto {
+  -webkit-margin-start: auto;
+          margin-inline-start: auto;
+}
+
 .block {
   display: block;
 }

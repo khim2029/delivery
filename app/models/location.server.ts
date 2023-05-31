@@ -1,3 +1,4 @@
+import { Location } from "@prisma/client";
 import { prisma } from "~/db.server";
 
 export const findLocationsCordinates = async (
@@ -9,7 +10,7 @@ export const findLocationsCordinates = async (
     longitude: string;
   }[]
 > => {
-  const x = await prisma.location.findMany({
+  return await prisma.location.findMany({
     where: {
       slug: {
         in: locations,
@@ -21,7 +22,6 @@ export const findLocationsCordinates = async (
       longitude: true,
     },
   });
-  return x;
 };
 
 export const getLocationsCordinates = async (
@@ -43,4 +43,15 @@ export const getLocationsCordinates = async (
     throw new Error(`Error: Ensure the input location is correct`);
   }
   return locationCordinates;
+};
+
+export const getVoyageLocations = async (): Promise<Partial<Location>[]> => {
+  return await prisma.location.findMany({
+    select: {
+      name: true,
+      latitude: true,
+      longitude: true,
+      port: true,
+    },
+  });
 };

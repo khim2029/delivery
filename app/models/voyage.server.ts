@@ -264,3 +264,5 @@ export async function voyageList({ userId }: { userId: User["id"] }) {
   }
   return vessels;
 }
+
+export const deleteVoyage = () => {};

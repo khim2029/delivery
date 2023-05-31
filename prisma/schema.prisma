@@ -60,8 +60,6 @@ model Vessel {
   presentLocation    String?
 }
 
-//Store Vessel locations as comma seperated string
-
 model Location {
   id        String   @id @default(cuid())
   longitude String
@@ -83,7 +81,7 @@ model Cargo {
   description           String
   quantity              Int
   note                  String
-  vessel                Vessel   @relation(fields: [vesselId], references: [id])
+  vessel                Vessel   @relation(fields: [vesselId], references: [id], onDelete: Cascade)
   vesselId              String   @unique
   mmsi                  Int
   callSign              String

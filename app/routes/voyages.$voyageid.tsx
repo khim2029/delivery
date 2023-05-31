@@ -1,11 +1,11 @@
-import { ActionArgs, LoaderArgs, json } from "@remix-run/node";
+import { ActionArgs, LoaderArgs, json, redirect } from "@remix-run/node";
 import {
   Form,
   isRouteErrorResponse,
   useLoaderData,
   useRouteError,
 } from "@remix-run/react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row, Stack } from "react-bootstrap";
 import invariant from "tiny-invariant";
 import { getLocationsCordinates } from "~/models/location.server";
 import { getVoyage, updateVoyage } from "~/models/voyage.server";
@@ -131,7 +131,7 @@ export const action = async ({ request, params }: ActionArgs) => {
     params.voyageId,
     voyage.id
   );
-  return safeRedirect("/voyages");
+  return redirect("/voyages");
 };
 export const loader = async ({ params, request }: LoaderArgs) => {
   const userId = await requireUserId(request);
@@ -158,9 +158,14 @@ export default function VoyageDetailsPage() {
       >
         <Row>
           <div className="mb-4">
-            <p className="mb-3 mt-4" style={{ color: "blue" }}>
-              {"Voyage information".toUpperCase()}
-            </p>
+            <Stack direction="horizontal" gap={3}>
+              <span>
+                <p className="mb-3 mt-4">{"Delete Voyage".toUpperCase()}</p>
+              </span>
+              <span className="ms-auto">
+                <Button variant="outline-danger">Delete</Button>
+              </span>
+            </Stack>
           </div>
           {Object.entries(data).map(([key, value]) => (
             <Col
@@ -196,7 +201,7 @@ export default function VoyageDetailsPage() {
             variant="success"
             type="submit"
           >
-            Submit
+            Update Voyage
           </Button>
         </Row>
       </Form>
