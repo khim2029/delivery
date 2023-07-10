@@ -1,13 +1,13 @@
 import { LoaderArgs, json } from "@remix-run/node";
 import { Link, Outlet, useLoaderData, NavLink } from "@remix-run/react";
 import { Form } from "react-bootstrap";
-import { voyageList } from "~/models/voyage.server";
+import { userVoyageList } from "~/models/voyage.server";
 import { requireUserId } from "~/session.server";
 import { useUser } from "~/utils";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const userId = await requireUserId(request);
-  const userVoyages = await voyageList({ userId });
+  const userVoyages = await userVoyageList({ userId });
   return json({ userVoyages });
 };
 export default function voyages() {

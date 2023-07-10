@@ -254,7 +254,7 @@ export const updateVoyage = async (
     });
 };
 
-export async function voyageList({ userId }: { userId: User["id"] }) {
+export async function userVoyageList({ userId }: { userId: User["id"] }) {
   const vessels = await prisma.vessel.findMany({
     where: { userId },
     orderBy: { createdAt: "desc" },
@@ -265,4 +265,14 @@ export async function voyageList({ userId }: { userId: User["id"] }) {
   return vessels;
 }
 
-export const deleteVoyage = () => {};
+export async function deleteVoyage(vesselId: string) {
+  return await prisma.vessel.delete({
+    where: {
+      id: vesselId,
+    },
+  });
+}
+
+export async function voyages() {
+  await prisma.vessel.findMany({});
+}

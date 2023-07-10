@@ -17,7 +17,7 @@ export default function Index() {
               <img
                 className="h-full w-full object-cover"
                 src="https://images.unsplash.com/photo-1597139416651-bf9a3b3e9014?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3244&q=80"
-                alt="Sonic Youth On Stage"
+                alt=""
               />
               <div className="absolute inset-0 bg-[color:rgba(254,204,27,0.5)] mix-blend-multiply" />
             </div>
@@ -30,10 +30,10 @@ export default function Index() {
               <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                 {user ? (
                   <Link
-                    to="/notes"
+                    to="/voyages"
                     className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
                   >
-                    View Notes for {user.email}
+                    View Voyages for {user.email}
                   </Link>
                 ) : (
                   <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">

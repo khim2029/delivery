@@ -10,7 +10,7 @@ import invariant from "tiny-invariant";
 import { getLocationsCordinates } from "~/models/location.server";
 import { getVoyage, updateVoyage } from "~/models/voyage.server";
 import { requireUserId } from "~/session.server";
-import { calculateVoyageDistance, safeRedirect } from "~/utils";
+import { calculateVoyageDistance } from "~/utils";
 
 export const action = async ({ request, params }: ActionArgs) => {
   const userId = await requireUserId(request);
@@ -157,16 +157,6 @@ export default function VoyageDetailsPage() {
         }}
       >
         <Row>
-          <div className="mb-4">
-            <Stack direction="horizontal" gap={3}>
-              <span>
-                <p className="mb-3 mt-4">{"Delete Voyage".toUpperCase()}</p>
-              </span>
-              <span className="ms-auto">
-                <Button variant="outline-danger">Delete</Button>
-              </span>
-            </Stack>
-          </div>
           {Object.entries(data).map(([key, value]) => (
             <Col
               style={{
