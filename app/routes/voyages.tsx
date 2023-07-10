@@ -1,5 +1,12 @@
 import { LoaderArgs, json } from "@remix-run/node";
-import { Link, Outlet, useLoaderData, NavLink } from "@remix-run/react";
+import {
+  Link,
+  Outlet,
+  useLoaderData,
+  NavLink,
+  useRouteError,
+  isRouteErrorResponse,
+} from "@remix-run/react";
 import { Form } from "react-bootstrap";
 import { userVoyageList } from "~/models/voyage.server";
 import { requireUserId } from "~/session.server";
@@ -10,7 +17,7 @@ export const loader = async ({ request }: LoaderArgs) => {
   const userVoyages = await userVoyageList({ userId });
   return json({ userVoyages });
 };
-export default function voyages() {
+export default function oyages() {
   const data = useLoaderData<typeof loader>();
   const user = useUser();
   return (
@@ -45,7 +52,7 @@ export default function voyages() {
           <hr />
 
           {data.userVoyages.length === 0 ? (
-            <p className="p-4">No notes yet</p>
+            <p className="p-4">No voyages yet</p>
           ) : (
             <ol>
               {data.userVoyages.map((voyage) => (
@@ -70,4 +77,21 @@ export default function voyages() {
       </main>
     </div>
   );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  if (error instanceof Error) {
+    return <div>An unexpected error occurred: {error.message}</div>;
+  }
+
+  if (!isRouteErrorResponse(error)) {
+    return <h1>Unknown Error</h1>;
+  }
+
+  if (error.status === 500) {
+    return <div>Voyage not found, try again later</div>;
+  }
+  return <div>An unexpected error occurred: {error.statusText}</div>;
 }

@@ -1,10 +1,9 @@
 import type { V2_MetaFunction } from "@remix-run/node";
-import { Link } from "@remix-run/react";
-import DatePicker from "~/components/DatePicker";
+import { Link, isRouteErrorResponse, useRouteError } from "@remix-run/react";
 
 import { useOptionalUser } from "~/utils";
 
-export const meta: V2_MetaFunction = () => [{ title: "Remix Notes" }];
+export const meta: V2_MetaFunction = () => [{ title: "Voyages" }];
 
 export default function Index() {
   const user = useOptionalUser();
@@ -33,7 +32,7 @@ export default function Index() {
                     to="/voyages"
                     className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
                   >
-                    View Voyages for {user.email}
+                    Create a New Voyage
                   </Link>
                 ) : (
                   <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
@@ -58,4 +57,21 @@ export default function Index() {
       </div>
     </main>
   );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  if (error instanceof Error) {
+    return <div>An unexpected error occurred: {error.message}</div>;
+  }
+
+  if (!isRouteErrorResponse(error)) {
+    return <h1>Unknown Error</h1>;
+  }
+
+  if (error.status === 500) {
+    return <div>Voyage not found, try again later</div>;
+  }
+  return <div>An unexpected error occurred: {error.statusText}</div>;
 }

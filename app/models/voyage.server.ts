@@ -265,10 +265,14 @@ export async function userVoyageList({ userId }: { userId: User["id"] }) {
   return vessels;
 }
 
-export async function deleteVoyage(vesselId: string) {
-  return await prisma.vessel.delete({
+export async function deleteVoyage({
+  id,
+  userId,
+}: Pick<Vessel, "id"> & { userId: User["id"] }) {
+  return await prisma.vessel.deleteMany({
     where: {
-      id: vesselId,
+      id,
+      userId,
     },
   });
 }

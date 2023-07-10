@@ -1,6 +1,7 @@
 import { ActionArgs, LoaderArgs, json, redirect } from "@remix-run/node";
 import {
   Form,
+  Link,
   isRouteErrorResponse,
   useLoaderData,
   useRouteError,
@@ -147,6 +148,16 @@ export default function VoyageDetailsPage() {
   const data = useLoaderData<typeof loader>().voyage;
   return (
     <Container>
+      <div>
+        <Link to={`../delete/${data.vesselId}`}>
+          <button
+            type="submit"
+            className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:bg-red-400"
+          >
+            Delete {data.vesselName}' Voyage
+          </button>
+        </Link>
+      </div>
       <Form
         method="put"
         style={{
@@ -180,7 +191,7 @@ export default function VoyageDetailsPage() {
                   type={typeof value === "string" ? "text" : "number"}
                   name={key}
                   className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
-                  defaultValue={value}
+                  defaultValue={value ?? ""}
                   disabled={key === "voyageDistance" ? true : false}
                 />
               </label>
