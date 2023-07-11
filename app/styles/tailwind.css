@@ -630,6 +630,11 @@ video {
   margin-top: 0.75rem;
 }
 
+.me-auto {
+  -webkit-margin-end: auto;
+          margin-inline-end: auto;
+}
+
 .block {
   display: block;
 }

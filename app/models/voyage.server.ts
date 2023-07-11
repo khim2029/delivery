@@ -280,3 +280,17 @@ export async function deleteVoyage({
 export async function voyages() {
   await prisma.vessel.findMany({});
 }
+
+export const getVoyageInfo = async ({ id }: Pick<Vessel, "id">) => {
+  const vessel = await prisma.vessel.findFirst({ where: { id } });
+  if (!vessel) {
+    throw new Response("Vessel not Found", { status: 404 });
+  }
+  const cargo = await prisma.cargo.findFirst({
+    where: { vesselId: vessel.id },
+  });
+  if (!cargo) {
+    throw new Response("Cargo not Found", { status: 404 });
+  }
+  return { ...vessel, ...cargo };
+};
