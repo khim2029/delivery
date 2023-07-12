@@ -14,13 +14,16 @@ import { getUser } from "~/session.server";
 import tailwindStylesheetUrl from "~/styles/tailwind.css";
 
 export const links: LinksFunction = () => [
-  {
-    rel: "stylesheet",
-    href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",
-  },
-  { rel: "stylesheet", href: tailwindStylesheetUrl },
-  { rel: "stylesheet", href: "./styles/style.css" },
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  ...(cssBundleHref
+    ? [{ rel: "stylesheet", href: cssBundleHref }]
+    : [
+        {
+          rel: "stylesheet",
+          href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",
+        },
+        { rel: "stylesheet", href: tailwindStylesheetUrl },
+        { rel: "stylesheet", href: "./styles/style.css" },
+      ]),
 ];
 
 export const loader = async ({ request }: LoaderArgs) => {

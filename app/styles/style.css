@@ -25,3 +25,12 @@ input:invalid:blur {
 input:invalid~span {
     display: block;
 }
+
+.progress-bar {
+    background-color: #81878f !important;
+}
+
+.card-header {
+    color: #fff;
+    background-color: rgb(0 147 255);
+}

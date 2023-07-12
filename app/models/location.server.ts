@@ -6,6 +6,7 @@ export const findLocationsCordinates = async (
 ): Promise<
   {
     name: string;
+    port: string | null;
     latitude: string;
     longitude: string;
   }[]
@@ -20,6 +21,7 @@ export const findLocationsCordinates = async (
       name: true,
       latitude: true,
       longitude: true,
+      port: true,
     },
   });
 };

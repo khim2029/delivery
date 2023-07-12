@@ -1,4 +1,6 @@
 import { useMatches } from "@remix-run/react";
+import jstz from "jstz";
+import moment from "moment";
 import { useMemo } from "react";
 
 import type { User } from "~/models/user.server";
@@ -114,4 +116,60 @@ export function convertDateToUTC(dateStr: string) {
     return new Date(utcTime).toISOString();
   }
   return dateStr;
+}
+
+export function calculateVoyageProgress(
+  vesselLocations: string,
+  presentLocation: string
+) {
+  const vesselLocationsArr = vesselLocations.split(",");
+  const index = vesselLocationsArr.indexOf(presentLocation.trim()) + 1;
+  return Math.max(index / vesselLocationsArr.length) * 100;
+}
+
+export function getVoyageLastLocation(vesselLocations: string) {
+  const vesselLocationsArr = vesselLocations.split(",");
+  return vesselLocationsArr[vesselLocationsArr.length - 1];
+}
+
+export function getVoyageInitialLocation(vesselLocations: string) {
+  const vesselLocationsArr = vesselLocations.split(",");
+  return vesselLocationsArr[0];
+}
+
+export function distanceTravelled(
+  vesselLocations: string,
+  presentLocation: string,
+  voyageDistance: number
+): number {
+  const vesselLocationsArr = vesselLocations.split(",");
+  const index = vesselLocationsArr.indexOf(presentLocation.trim()) + 1;
+  return Math.round((voyageDistance / vesselLocationsArr.length) * index);
+}
+
+export function distanceTogo(
+  vesselLocations: string,
+  presentLocation: string,
+  voyageDistance: number
+) {
+  return Math.round(
+    voyageDistance -
+      distanceTravelled(vesselLocations, presentLocation, voyageDistance)
+  );
+}
+
+function padZero(num: number) {
+  return String(num).padStart(2, "0");
+}
+
+export function calculateLocalTimeFromLogitudeAndLatitude(longitude: string) {
+  const now = new Date();
+  const offset = Math.round(Number(longitude) / 15) * 60;
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000 - offset * 60000;
+  const localDate = new Date(utc);
+  const hours = localDate.getHours();
+  const minutes = localDate.getMinutes();
+  const seconds = localDate.getSeconds();
+  const localTime = `${hours}:${padZero(minutes)}:${padZero(seconds)}`;
+  return localTime;
 }

@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 export default function Details() {
   return (
     <div>
-      <Navbar bg="light" data-bs-theme="light">
+      <Navbar bg="primary" data-bs-theme="dark">
         <Container>
           <span>
             <Navbar.Brand href="#home">Navbar</Navbar.Brand>

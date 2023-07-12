@@ -150,16 +150,30 @@ export default function VoyageDetailsPage() {
   const data = useLoaderData<typeof loader>().voyage;
   return (
     <Container>
-      <div>
-        <Link to={`../delete/${data.vesselId}`}>
-          <button
-            type="submit"
-            className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:bg-red-400"
-          >
-            Delete {data.vesselName}' Voyage
-          </button>
-        </Link>
-      </div>
+      <Stack direction="horizontal" gap={3}>
+        <div>
+          <Link to={`../delete/${data.vesselId}`}>
+            <button
+              type="submit"
+              className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:bg-red-400"
+            >
+              Delete {data.vesselName}' Voyage
+            </button>
+          </Link>
+        </div>
+        <div className="ms-auto">
+          {" "}
+          <Link to={`/details/ships/${data.vesselId}`}>
+            <button
+              type="submit"
+              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-400"
+            >
+              Go to {data.vesselName}' Voyage details page
+            </button>
+          </Link>
+        </div>
+      </Stack>
+
       <Form
         method="put"
         style={{
