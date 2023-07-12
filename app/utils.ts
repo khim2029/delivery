@@ -95,3 +95,23 @@ export function calculateVoyageDistance(
 
   return Math.round(distance);
 }
+
+export function convertDateToUTC(dateStr: string) {
+  const dateArr: string[] = dateStr.split("/");
+  const month = parseInt(dateArr[1], 10) - 1;
+  if (!isNaN(month)) {
+    const day = parseInt(dateArr[0], 10);
+    const year = parseInt(dateArr[2], 10);
+    const date = new Date(year, month, day);
+    const utcTime = Date.UTC(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds()
+    );
+    return new Date(utcTime).toISOString();
+  }
+  return dateStr;
+}

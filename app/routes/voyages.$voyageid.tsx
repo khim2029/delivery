@@ -11,7 +11,7 @@ import invariant from "tiny-invariant";
 import { getLocationsCordinates } from "~/models/location.server";
 import { getVoyage, updateVoyage } from "~/models/voyage.server";
 import { requireUserId } from "~/session.server";
-import { calculateVoyageDistance } from "~/utils";
+import { calculateVoyageDistance, convertDateToUTC } from "~/utils";
 
 export const action = async ({ request, params }: ActionArgs) => {
   const userId = await requireUserId(request);
@@ -29,8 +29,10 @@ export const action = async ({ request, params }: ActionArgs) => {
   const voyageState = formData.get("voyageState")?.toString() ?? "";
   const navigationalStatus =
     formData.get("navigationalStatus")?.toString() ?? "";
-  const departureTime = formData.get("departureTime")?.toString() ?? "";
-  const arrivalTime = formData.get("arrivalTime")?.toString() ?? "";
+  let departureTime = formData.get("departureTime")?.toString() ?? "";
+  departureTime = departureTime ? convertDateToUTC(departureTime) : "";
+  let arrivalTime = formData.get("arrivalTime")?.toString() ?? "";
+  arrivalTime = arrivalTime ? convertDateToUTC(arrivalTime) : "";
   const sender = formData.get("sender")?.toString() ?? "";
   const senderAddress = formData.get("senderAddress")?.toString() ?? "";
   const consignee = formData.get("consignee")?.toString() ?? "";
