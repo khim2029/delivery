@@ -1,6 +1,5 @@
 import { LoaderArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { useEffect } from "react";
 import {
   Card,
   Col,
@@ -18,8 +17,10 @@ import {
   calculateVoyageProgress,
   distanceTogo,
   distanceTravelled,
+  generateRandomNumbers,
   getVoyageInitialLocation,
   getVoyageLastLocation,
+  removeSpaces,
 } from "~/utils";
 
 export const loader = async ({ params }: LoaderArgs) => {
@@ -38,14 +39,16 @@ export const loader = async ({ params }: LoaderArgs) => {
   }
   const presentLocation = voyage.presentLocation;
   if (presentLocation) {
-    location = await findLocationsCordinates([presentLocation]);
+    location = await findLocationsCordinates([removeSpaces(presentLocation)]);
   }
-  return { voyage, location };
+  const speed = generateRandomNumbers(20, 5);
+  return { voyage, location, speed };
 };
 
 export default function VoyageInfo() {
   const data = useLoaderData<typeof loader>();
   const location = data.location ? data.location[0] : undefined;
+  const speed = data.speed;
   const {
     vesselLocations,
     presentLocation,
@@ -198,7 +201,10 @@ export default function VoyageInfo() {
                   {navigationalStatus}
                 </span>
               </ListGroup.Item>
-              <ListGroup.Item>Speed/Course: </ListGroup.Item>
+              <ListGroup.Item>
+                Speed/Course:{" "}
+                <span style={{ fontWeight: "bold" }}> {speed} knots</span>
+              </ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>
@@ -223,9 +229,9 @@ export default function VoyageInfo() {
                 </p>
                 <p>{`The vessel departed from ${getVoyageInitialLocation(
                   vesselLocations
-                )} on 2023-05-31 13:10 LT (UTC +3) and is currently sailing at 14.0 knots with North direction heading to ${getVoyageLastLocation(
+                )} on ${departureTime} and is currently sailing at ${speed} knots with North direction heading to ${getVoyageLastLocation(
                   vesselLocations
-                )}, TR with reported Estimated Time of Arrival at 2023-07-12 21:00 LT (UTC +3) local time (in 5 hours, 48 minutes) 
+                )}, TR with reported Estimated Time of Arrival at ${arrivalTime} local time.
               `}</p>
                 <p
                   style={{
@@ -237,7 +243,7 @@ export default function VoyageInfo() {
                   What kind of ship is this?
                 </p>
                 <p>{` ${vesselName} (${imo}) is a Crude Oil Tanker that was built in ${yearBuilt} and is sailing under the flag of ${flag}. 
-              Her carrying capacity is ${summerDWT} t DWT and her current draught is reported to be 12 meters. Her length overall (LOA) is ${length} meters and her width is ${breadth} meters.`}</p>
+              Her carrying capacity is ${summerDWT} t DWT and her current draught is reported to be ${length} meters. Her length overall (LOA) is ${length} meters and her width is ${breadth} meters.`}</p>
               </Card.Text>
             </Card.Body>
           </Card>

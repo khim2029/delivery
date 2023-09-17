@@ -173,3 +173,11 @@ export function calculateLocalTimeFromLogitudeAndLatitude(longitude: string) {
   const localTime = `${hours}:${padZero(minutes)}:${padZero(seconds)}`;
   return localTime;
 }
+
+export function generateRandomNumbers(max: number, min: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function removeSpaces(word: string): string {
+  return word.replace(/\s/g, "");
+}
